@@ -6,12 +6,13 @@ if (!min.open(0))
   me.exit();
 }
 
-SinOsc ugens[88];
-for(0 => int i; i < ugens.cap(); i++)
+Osc ugens[0];
+for(0 => int i; i < 122; i++)
 {
-  ugens[i] => safety;
-  0 => ugens[i].gain;
-  Std.mtof(i) => ugens[i].freq;
+  TriOsc thisUgen => safety;
+  0 => thisUgen.gain;
+  Std.mtof(i) => thisUgen.freq;
+  ugens << thisUgen;
 }
 
 MidiMsg msg;
@@ -35,18 +36,18 @@ while(true)
   }
 }
 
-fun void turnOn(SinOsc ugens[], int midiNote)
+fun void turnOn(Osc ugens[], int midiNote)
 {
   .01 =>  ugens[midiNote].gain;
   <<< "turning " + ugens[midiNote].freq() +  " on!" >>>;
 }
-fun void turnOff(SinOsc ugens[], int midiNote)
+fun void turnOff(Osc ugens[], int midiNote)
 {
   0 =>  ugens[midiNote].gain;
   <<< "turning " + ugens[midiNote].freq() +  " off!">>>;
 }
 
-fun void eq(SinOsc ugens[])
+fun void eq(Osc ugens[])
 {
   0 => int onUgenCount;
   for(0 => int i; i < ugens.cap(); i++)
