@@ -1,7 +1,7 @@
 SinOsc sineOscillator => dac;
 0 => sineOscillator.gain;
 
-MidiIn m          bvin;
+MidiIn min;
 if (!min.open(0))
 {
   me.exit();
