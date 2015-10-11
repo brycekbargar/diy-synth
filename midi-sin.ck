@@ -1,10 +1,17 @@
-SinOsc sineOscillator => dac;
-0 => sineOscillator.gain;
+Dyno safety => dac;
 
 MidiIn min;
 if (!min.open(0))
 {
   me.exit();
+}
+
+SinOsc ugens[88];
+for(0 => int i; i < ugens.cap(); i++)
+{
+  ugens[i] => safety;
+  0 => ugens[i].gain;
+  Std.mtof(i) => ugens[i].freq;
 }
 
 MidiMsg msg;
@@ -15,15 +22,47 @@ while(true)
   while(min.recv(msg))
   {
     <<< msg.data1, msg.data2, msg.data3 >>>;
-    Std.mtof( msg.data2 ) => float newFreq;
     if(msg.data1 == 144)
     {
-      .5 => sineOscillator.gain;
-      Std.mtof( msg.data2 ) => sineOscillator.freq;
+      turnOn(ugens, msg.data2);
     }
-    if(msg.data1 == 128 && newFreq == sineOscillator.freq())
+    if(msg.data1 == 128)
     {
-      0 => sineOscillator.gain;
+      turnOff(ugens, msg.data2);
+    }
+
+    eq(ugens);
+  }
+}
+
+fun void turnOn(SinOsc ugens[], int midiNote)
+{
+  .01 =>  ugens[midiNote].gain;
+  <<< "turning " + ugens[midiNote].freq() +  " on!" >>>;
+}
+fun void turnOff(SinOsc ugens[], int midiNote)
+{
+  0 =>  ugens[midiNote].gain;
+  <<< "turning " + ugens[midiNote].freq() +  " off!">>>;
+}
+
+fun void eq(SinOsc ugens[])
+{
+  0 => int onUgenCount;
+  for(0 => int i; i < ugens.cap(); i++)
+  {
+    if(ugens[i].gain() > 0)
+    {
+      1 +=> onUgenCount;
+    }
+  }
+  <<< "there are " + onUgenCount + " ugens!">>>;
+  for(0 => int i; i < ugens.cap(); i++)
+  {
+    if(ugens[i].gain() > 0)
+    {
+      (1.0 / onUgenCount) => ugens[i].gain;
+      <<< "equing " + ugens[i].freq() + " to " + ugens[i].gain() >>>;
     }
   }
 }
