@@ -1,10 +1,10 @@
 public class AppDispatcher
 {
-  static Dispatcher @ dispatcher;
-  new Dispatcher @=> dispatcher;
+  static Dispatcher @ _dispatcher;
+  new Dispatcher @=> _dispatcher;
 
   fun static Dispatcher Instance()
   {
-    return dispatcher;
+    return _dispatcher;
   }
 }
