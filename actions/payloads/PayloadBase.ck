@@ -1,4 +1,1 @@
-public class PayloadBase
-{
-
-}
+public class PayloadBase { }

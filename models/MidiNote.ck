@@ -1,10 +1,7 @@
 public class MidiNote
 {
   int _number;
-  fun int GetNumber()
-  {
-    return _number;
-  }
+  fun int Number() { return _number; }
 
   fun static MidiNote Create(int number)
   {
@@ -13,7 +10,9 @@ public class MidiNote
     return newNote;
   }
 
-  0 => int _on;
+  0 => int _isOn;
+  fun int IsOn() { return _isOn; }
+  fun int IsOff() { return IsOn() == 0; }
   fun void TurnOn()
   {
     TurnOn(127);
@@ -21,29 +20,16 @@ public class MidiNote
   fun void TurnOn(int velocity)
   {
     SetVelocity(velocity);
-    1 => _on;
+    1 => _isOn;
   }
   fun void TurnOff()
   {
     SetVelocity(0);
-    0 => _on;
-  }
-  fun int IsOn()
-  {
-    return _on;
-  }
-  fun int IsOff()
-  {
-    return _on == 0;
+    0 => _isOn;
   }
 
+
   0 => int _velocity;
-  fun void SetVelocity(int velocity)
-  {
-    velocity => _velocity;
-  }
-  fun int GetVelocity()
-  {
-    return _velocity;
-  }
+  fun int Velocity() { return _velocity; }
+  fun void SetVelocity(int velocity) { velocity => _velocity; }
 }
