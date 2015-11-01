@@ -18,7 +18,7 @@ public class AlesisQ25 extends InputBase
         <<< msg.data1, msg.data2, msg.data3 >>>;
         if(msg.data1 == 224)
         {
-          me.exit();
+          InputBase.Closed.broadcast();
         }
       }
     }

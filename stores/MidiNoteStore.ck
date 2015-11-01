@@ -4,6 +4,10 @@ public class MidiNoteStore
   new Event @=> OnChange;
 
   MidiNote _notes[0];
+  fun MidiNote[] AllNotes()
+  {
+    return _notes;
+  }
 
   fun void EmitChange()
   {
@@ -55,6 +59,9 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
     {
       message.Payload() $ MidiNoteCreatePayload @=> MidiNoteCreatePayload payload;
       _store.New(payload.Number());
+      _store.EmitChange();
     }
   }
 }
+
+MidiNoteStore.Instance();
