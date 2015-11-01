@@ -16,9 +16,9 @@ public class MidiNoteStore
 
   fun void New(int number)
   {
-    while(_notes.cap() <= number)
+    if(_notes.size() <= number)
     {
-      _notes << null;
+      _notes.size(number + 1);
     }
 
     if(_notes[number] == null)
