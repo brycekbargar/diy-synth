@@ -26,6 +26,14 @@ public class MidiNoteStore
       MidiNote.Create(number) @=> _notes[number];
     }
   }
+  fun void TurnOn(int number)
+  {
+    _notes[number].TurnOn();
+  }
+  fun void TurnOff(int number)
+  {
+    _notes[number].TurnOff();
+  }
 
   static MidiNoteStore @ _store;
   fun static MidiNoteStore Instance()
@@ -55,13 +63,29 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
 
   fun void Handle(DispatchMessage message)
   {
-    if(message.ActionType() == Constants.MIDI_NOTE_CREATE)
+    message.ActionType() => int actionType;
+
+    if(actionType == Constants.MIDI_NOTE_CREATE ||
+      actionType == Constants.MIDI_NOTE_ON ||
+      actionType == Constants.MIDI_NOTE_OFF)
     {
-      message.Payload() $ MidiNoteCreatePayload @=> MidiNoteCreatePayload payload;
-      _store.New(payload.Number());
+      (message.Payload() $ MidiNotePayload).Number() => int number;
+
+      if(actionType == Constants.MIDI_NOTE_CREATE)
+      {
+        _store.New(number);
+      }
+      if(actionType == Constants.MIDI_NOTE_ON)
+      {
+        _store.TurnOn(number);
+      }
+      if(actionType == Constants.MIDI_NOTE_OFF)
+      {
+        _store.TurnOff(number);
+      }
+
       _store.EmitChange();
     }
   }
 }
-
 MidiNoteStore.Instance();

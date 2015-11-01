@@ -4,7 +4,6 @@ public class AlesisQ25 extends InputBase
   {
     for(124 => int midiNote; midiNote > 0; midiNote--)
     {
-      now => now;
       MidiNoteActions.Create(midiNote);
     }
 
@@ -21,7 +20,15 @@ public class AlesisQ25 extends InputBase
 
       while(min.recv(msg))
       {
-        <<< msg.data1, msg.data2, msg.data3 >>>;
+        if(msg.data1 == 144)
+        {
+          MidiNoteActions.NoteOn(msg.data2);
+        }
+        if(msg.data1 == 128)
+        {
+          MidiNoteActions.NoteOff(msg.data2);
+        }
+
         if(msg.data1 == 224)
         {
           InputBase.Closed.broadcast();

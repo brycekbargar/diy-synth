@@ -8,7 +8,7 @@ public class AppDispatcher
     {
       new Dispatcher @=> _dispatcher;
     }
-    
+
     return _dispatcher;
   }
 }

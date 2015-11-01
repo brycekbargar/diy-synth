@@ -10,7 +10,7 @@ Machine.add(me.dir()+"models/MidiNote.ck");
 // Plumbing
 Machine.add(me.dir()+"dispatcher/AppDispatcher.ck");
 Machine.add(me.dir()+"constants/Constants.ck");
-Machine.add(me.dir()+"actions/payloads/MidiNoteCreatePayload.ck");
+Machine.add(me.dir()+"actions/payloads/MidiNotePayload.ck");
 Machine.add(me.dir()+"actions/MidiNoteActions.ck");
 
 // State

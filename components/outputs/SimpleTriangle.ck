@@ -17,16 +17,49 @@ public class SimpleTriangle extends OutputBase
 
       for(0 => int i; i < notes.size(); i++)
       {
-        if(notes[i] == null)
+        notes[i] @=> MidiNote thisNote;
+        _ugens[i] @=> TriOsc thisUgen;
+
+        if(thisNote == null && thisUgen != null)
         {
+          0 => thisUgen.gain;
           null @=> _ugens[i];
         }
-        else
+        else if(thisNote != null && thisUgen == null)
         {
-          TriOsc thisUgen => safety;
-          0 => thisUgen.gain;
-          Std.mtof(notes[i].Number()) => thisUgen.freq;
-          thisUgen @=> _ugens[i];
+          TriOsc newUgen => safety;
+          0 => newUgen.gain;
+          Std.mtof(thisNote.Number()) => newUgen.freq;
+          newUgen @=> _ugens[i];
+        }
+
+        if(thisNote != null &&
+          thisUgen != null)
+        {
+          if(thisNote.IsOn() && thisUgen.gain() == 0)
+          {
+            .01 => thisUgen.gain;
+          }
+          else if(thisNote.IsOff() && thisUgen.gain() > 0)
+          {
+            0 => thisUgen.gain;
+          }
+        }
+      }
+
+      0 => int onUgenCount;
+      for(0 => int i; i < _ugens.size(); i++)
+      {
+        if(_ugens[i] != null && _ugens[i].gain() > 0)
+        {
+          1 +=> onUgenCount;
+        }
+      }
+      for(0 => int i; i < _ugens.size(); i++)
+      {
+        if(_ugens[i] != null && _ugens[i].gain() > 0)
+        {
+          (1.0 / onUgenCount) => _ugens[i].gain;
         }
       }
     }

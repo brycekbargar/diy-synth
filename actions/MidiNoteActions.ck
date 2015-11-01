@@ -2,9 +2,24 @@ public class MidiNoteActions
 {
   fun static void Create(int number)
   {
+    Dispatch(Constants.MIDI_NOTE_CREATE, number);
+  }
+
+  fun static void NoteOn(int number)
+  {
+    Dispatch(Constants.MIDI_NOTE_ON, number);
+  }
+
+  fun static void NoteOff(int number)
+  {
+    Dispatch(Constants.MIDI_NOTE_OFF, number);
+  }
+
+  fun static void Dispatch(int action, int number)
+  {
     AppDispatcher.Instance()
       .Dispatch(DispatchMessage.Create(
-        Constants.MIDI_NOTE_CREATE,
-        MidiNoteCreatePayload.From(number)));
+        action,
+        MidiNotePayload.From(number)));
   }
 }
