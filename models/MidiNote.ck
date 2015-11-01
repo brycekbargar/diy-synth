@@ -5,6 +5,7 @@ public class MidiNote
 
   fun static MidiNote Create(int number)
   {
+    <<< "Creating" + number >>>;
     MidiNote newNote;
     number => newNote._number;
     return newNote;
