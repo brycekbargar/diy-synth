@@ -3,12 +3,38 @@ public class MidiNoteStore
   static Event @ OnChange;
   new Event @=> OnChange;
 
+  MidiNote _notes[0];
+
   fun void EmitChange()
   {
     OnChange.broadcast();
   }
 
-  AppDispatcher.Instance().Register(MidiNoteStoreDispatchable.Create(new MidiNoteStore));
+  fun void New(int number)
+  {
+    while(_notes.cap() <= number)
+    {
+      _notes << null;
+    }
+
+    if(_notes[number] == null)
+    {
+      MidiNote.Create(number) @=> _notes[number];
+    }
+  }
+
+  static MidiNoteStore @ _store;
+  fun static MidiNoteStore Instance()
+  {
+    if(_store == null)
+    {
+      new MidiNoteStore @=> _store;
+      AppDispatcher.Instance()
+        .Register(MidiNoteStoreDispatchable.Create(_store));
+    }
+
+    return _store;
+  }
 }
 
 private class MidiNoteStoreDispatchable extends DispatchableBase
@@ -23,5 +49,12 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
     return newDispatchable;
   }
 
-  fun void Handle(DispatchMessage message) { }
+  fun void Handle(DispatchMessage message)
+  {
+    if(message.ActionType() == Constants.MIDI_NOTE_CREATE)
+    {
+      message.Payload() $ MidiNoteCreatePayload @=> MidiNoteCreatePayload payload;
+      _store.New(payload.Number());
+    }
+  }
 }
