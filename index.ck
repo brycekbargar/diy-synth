@@ -1,0 +1,2 @@
+Synth theCoolSynth;
+theCoolSynth.MakesNoise();
