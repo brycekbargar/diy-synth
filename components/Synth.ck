@@ -6,5 +6,8 @@ public class Synth
     {
       MidiNoteActions.Create(midiNote);
     }
+
+    AlesisQ25 input;
+    input.Start();
   }
 }
