@@ -8,12 +8,6 @@ public class Synth
     AlesisQ25 input;
     spork ~ input.Start();
 
-    for(0 => int midiNote; midiNote <= 120; midiNote++)
-    {
-      now => now;
-      MidiNoteActions.Create(midiNote);
-    }
-
     InputBase.Closed => now;
   }
 }
