@@ -2,7 +2,7 @@ public class Synth
 {
   fun void MakesNoise()
   {
-    SimpleTriangle output;
+    OutputFactory.GetConfigured() @=> OutputBase output;
     spork ~ output.Start();
 
     InputFactory.GetConfigured() @=> InputBase input;

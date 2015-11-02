@@ -24,6 +24,9 @@ Machine.add(me.dir()+"components/inputs/InputTypes.ck");
 Machine.add(me.dir()+"components/inputs/InputFactory.ck");
 Machine.add(me.dir()+"components/outputs/OutputBase.ck");
 Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
+Machine.add(me.dir()+"components/outputs/OutputTypes.ck");
+Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
+
 Machine.add(me.dir()+"components/Synth.ck");
 
 // Go!
