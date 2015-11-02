@@ -16,6 +16,10 @@ public class InputFactory
     {
       return new AlesisQ25 $ InputBase;
     }
+    if(inputType == InputType.HIDKeyboard)
+    {
+      return new HIDKeyboard $ InputBase;
+    }
 
     return null;
   }
