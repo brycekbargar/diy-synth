@@ -1,5 +1,5 @@
 InputFactory.Configure(InputType.AlesisQ25);
-OutputFactory.Configure(OutputType.SimpleTriangle);
+OutputFactory.Configure(OutputType.SimpleStrings);
 
 Synth theCoolSynth;
 theCoolSynth.MakesNoise();

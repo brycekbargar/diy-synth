@@ -16,6 +16,10 @@ public class OutputFactory
     {
       return new SimpleTriangle $ OutputBase;
     }
+    if(outputType == OutputType.SimpleStrings)
+    {
+      return new SimpleStrings $ OutputBase;
+    }
 
     return null;
   }
