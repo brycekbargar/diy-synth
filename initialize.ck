@@ -19,6 +19,8 @@ Machine.add(me.dir()+"stores/MidiNoteStore.ck");
 // Components
 Machine.add(me.dir()+"components/inputs/InputBase.ck");
 Machine.add(me.dir()+"components/inputs/AlesisQ25.ck");
+Machine.add(me.dir()+"components/inputs/InputTypes.ck");
+Machine.add(me.dir()+"components/inputs/InputFactory.ck");
 Machine.add(me.dir()+"components/outputs/OutputBase.ck");
 Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
 Machine.add(me.dir()+"components/Synth.ck");

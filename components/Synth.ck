@@ -5,7 +5,7 @@ public class Synth
     SimpleTriangle output;
     spork ~ output.Start();
 
-    AlesisQ25 input;
+    InputFactory.GetConfigured() @=> InputBase input;
     spork ~ input.Start();
 
     InputBase.Closed => now;
