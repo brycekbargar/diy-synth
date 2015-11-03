@@ -31,4 +31,5 @@ Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
 Machine.add(me.dir()+"components/Synth.ck");
 
 // Go!
+Machine.add(me.dir()+"configurator.ck");
 Machine.add(me.dir()+"index.ck");
