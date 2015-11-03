@@ -8,6 +8,19 @@ public class MidiNoteStore
   {
     return _notes;
   }
+  fun MidiNote[] OnNotes()
+  {
+    MidiNote onNotes[0];
+    for(0 => int i; i < _notes.size(); i++)
+    {
+      if(_notes[i] != null && _notes[i].IsOn())
+      {
+        onNotes << _notes[i];
+      }
+    }
+
+    return onNotes;
+  }
 
   fun void EmitChange()
   {

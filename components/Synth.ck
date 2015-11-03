@@ -2,10 +2,10 @@ public class Synth
 {
   fun void MakesNoise()
   {
-    SimpleTriangle output;
+    OutputFactory.GetConfigured() @=> OutputBase output;
     spork ~ output.Start();
 
-    AlesisQ25 input;
+    InputFactory.GetConfigured() @=> InputBase input;
     spork ~ input.Start();
 
     InputBase.Closed => now;
