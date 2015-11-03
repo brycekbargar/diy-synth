@@ -31,5 +31,11 @@ Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
 Machine.add(me.dir()+"components/Synth.ck");
 
 // Go!
-Machine.add(me.dir()+"configurator.ck");
+// (...why is this language such shit?)
+me.dir()+"configurator.ck" => string configurator;
+for( int i; i < me.args(); i++ )
+{
+  (configurator + ":" + me.arg(i)) => configurator;
+}
+Machine.add(configurator);
 Machine.add(me.dir()+"index.ck");
