@@ -8,8 +8,8 @@ public class MidiControl
   fun static MidiControl Create(int type, int value)
   {
     MidiControl model;
-    model._type = type;
-    model._value = value;
+    type => model._type;
+    value => model._value;
 
     return model;
   }

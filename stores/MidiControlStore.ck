@@ -1,4 +1,4 @@
-public class MidiNoteStore
+public class MidiControlStore
 {
   static Event @ OnChange;
   new Event @=> OnChange;
@@ -15,7 +15,7 @@ public class MidiNoteStore
 
   fun void Set(int type, int value)
   {
-    if(type == ControlType.ModWheel)
+    if(type == MidiControlType.ModWheel)
     {
       value => _modWheel;
     }
@@ -54,8 +54,8 @@ private class MidiControlStoreDispatchable extends DispatchableBase
 
     if(actionType == Constants.MIDI_CONTROL)
     {
-      (message.Payload() $ MidiControlPayload) => MidiControlPayload payload;
-      _store.Set(payload.Type(), payload.Value())
+      (message.Payload() $ MidiControlPayload) @=> MidiControlPayload payload;
+      _store.Set(payload.Type(), payload.Value());
       _store.EmitChange();
     }
   }

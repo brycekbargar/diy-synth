@@ -61,6 +61,7 @@ public class MidiNoteStore
     return _store;
   }
 }
+MidiNoteStore.Instance();
 
 private class MidiNoteStoreDispatchable extends DispatchableBase
 {
@@ -101,4 +102,3 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
     }
   }
 }
-MidiNoteStore.Instance();

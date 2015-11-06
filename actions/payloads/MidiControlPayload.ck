@@ -5,7 +5,7 @@ public class MidiControlPayload extends PayloadBase
   int _value;
   fun int Value() { return _value; }
 
-  fun static MidiControlPayload Create(int type, int value)
+  fun static MidiControlPayload From(int type, int value)
   {
     MidiControlPayload payload;
     type => payload._type;
