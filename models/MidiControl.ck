@@ -7,7 +7,10 @@ public class MidiControl
 
   fun static MidiControl Create(int type, int value)
   {
-    _type = type;
-    _value = value;
+    MidiControl model;
+    model._type = type;
+    model._value = value;
+
+    return model;
   }
 }

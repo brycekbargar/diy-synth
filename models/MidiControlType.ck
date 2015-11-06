@@ -1,5 +1,5 @@
 public class MidiControlType
 {
-  91262 => static int ModWheel;
+  1 => static int ModWheel;
 }
 MidiControlType midiControlType;
