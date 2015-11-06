@@ -28,6 +28,13 @@ public class AlesisQ25 extends InputBase
         {
           MidiNoteActions.NoteOff(msg.data2);
         }
+        if(msg.data1 == 176)
+        {
+          if(msg.data2 == 1)
+          {
+            MidiControlActions.ModWheelSetTo(msg.data3);
+          }
+        }
 
         if(msg.data1 == 224)
         {

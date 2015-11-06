@@ -1,6 +1,6 @@
 public class MidiControlActions
 {
-  fun static void ModWheelActivated(int value)
+  fun static void ModWheelSetTo(int value)
   {
     AppDispatcher.Instance()
       .Dispatch(DispatchMessage.Create(
