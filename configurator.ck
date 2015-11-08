@@ -45,6 +45,7 @@ for( int i; i < me.args() - 1; i++ )
     if(nextArg == "Fixed")
     {
       MetronomeFactory.Configure(MetronomeType.Fixed);
+      continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
   }
