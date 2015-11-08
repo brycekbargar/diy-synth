@@ -38,4 +38,14 @@ for( int i; i < me.args() - 1; i++ )
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
   }
+
+  if((thisArg == "metronome" || thisArg == "m"))
+  {
+    i++;
+    if(nextArg == "Fixed")
+    {
+      MetronomeFactory.Configure(MetronomeType.Fixed);
+    }
+    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
+  }
 }

@@ -25,18 +25,22 @@ Machine.add(me.dir()+"stores/MidiControlStore.ck");
 // Component Pluming
 Machine.add(me.dir()+"components/inputs/InputBase.ck");
 Machine.add(me.dir()+"components/outputs/OutputBase.ck");
+Machine.add(me.dir()+"components/metronomes/MetronomeBase.ck");
 Machine.add(me.dir()+"components/inputs/InputTypes.ck");
 Machine.add(me.dir()+"components/outputs/OutputTypes.ck");
+Machine.add(me.dir()+"components/metronomes/MetronomeTypes.ck");
 
 // Components
 Machine.add(me.dir()+"components/inputs/AlesisQ25.ck");
 Machine.add(me.dir()+"components/inputs/HIDKeyboard.ck");
 Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
 Machine.add(me.dir()+"components/outputs/SimpleStrings.ck");
+Machine.add(me.dir()+"components/metronomes/Fixed.ck");
 
 // Factories
 Machine.add(me.dir()+"components/inputs/InputFactory.ck");
 Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
+Machine.add(me.dir()+"components/metronomes/MetronomeFactory.ck");
 
 // Synths
 Machine.add(me.dir()+"components/Synth.ck");
