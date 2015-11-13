@@ -1,21 +1,27 @@
 public class TunedPing extends MetronomeBase
 {
+  ClockStore.Instance() @=> ClockStore _store;
+
   fun void Start()
   {
-    // Fixed to 60 bpm 1/8th notes because math is hard
-    Impulse beat => ResonZ pitch => Dyno safety => dac;
+    Impulse down => ResonZ pitch => Dyno safety => dac;
+    Impulse up => pitch => safety => dac;
     90 => pitch.Q;
 
-    (60.0 / 120.0) ::second => dur timing;
     while(true)
     {
-      2500 => pitch.freq;
-      2500 => beat.next;
-      timing => now;
+      ClockStore.OnChange => now;
 
-      2000 => pitch.freq;
-      2000 => beat.next;
-      timing => now;
+      if(_store.LastClock().IsDownbeat())
+      {
+        2500 => pitch.freq;
+        2500 => down.next;
+      }
+      if(_store.LastClock().IsUpbeat())
+      {
+        2000 => pitch.freq;
+        2000 => up.next;
+      }
     }
   }
 }

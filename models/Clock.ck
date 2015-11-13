@@ -4,7 +4,7 @@ public class Clock
   fun int Subdivision() { return _subdivision; }
 
   int _isDownbeat;
-  fun int IsDownBeat() { return _isDownbeat; }
+  fun int IsDownbeat() { return _isDownbeat; }
   fun int IsUpbeat() { return _isDownbeat != 1; }
 
 
