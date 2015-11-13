@@ -4,8 +4,14 @@ public class TunedPing extends MetronomeBase
 
   fun void Start()
   {
-    Impulse down => ResonZ pitch => Dyno safety => dac;
-    Impulse up => pitch => safety => dac;
+    Impulse down
+      => ResonZ pitch
+      => Dyno safety
+      => dac;
+    Impulse up
+      => pitch
+      => safety
+      => dac;
     90 => pitch.Q;
 
     while(true)
