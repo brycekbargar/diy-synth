@@ -55,7 +55,7 @@ for( int i; i < me.args() - 1; i++ )
     i++;
     if(nextArg == "Fixed")
     {
-      MetronomeFactory.Configure(ClockGeneratorType.Fixed);
+      ClockGeneratorFactory.Configure(ClockGeneratorType.Fixed);
       continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;

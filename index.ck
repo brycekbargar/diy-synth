@@ -1,8 +1,6 @@
-MetronomeFactory.GetConfigured() @=> MetronomeBase metronome;
-if(metronome != null)
-{
-  spork ~ metronome.Start();
-}
+ConfiguredSynth theCoolSynth;
+spork ~ theCoolSynth.MakesNoise();
+ConfiguredMetronome theCoolMetronome;
+spork ~ theCoolMetronome.MakesNoise();
 
-Synth theCoolSynth;
-theCoolSynth.MakesNoise();
+theCoolSynth.Done => now;

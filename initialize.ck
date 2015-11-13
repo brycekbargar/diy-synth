@@ -51,7 +51,8 @@ Machine.add(me.dir()+"components/clock-generators/ClockGeneratorFactory.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeFactory.ck");
 
 // Synths
-Machine.add(me.dir()+"components/Synth.ck");
+Machine.add(me.dir()+"components/ConfiguredMetronome.ck");
+Machine.add(me.dir()+"components/ConfiguredSynth.ck");
 
 // Go!
 // (...why is this language such shit?)
