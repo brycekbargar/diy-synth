@@ -1,5 +1,5 @@
 public class MetronomeType
 {
-  46121651 => static int Fixed;
+  46121651 => static int TunedPing;
 }
 MetronomeType metronomeType;

@@ -1,4 +1,4 @@
-public class Fixed extends MetronomeBase
+public class TunedPing extends MetronomeBase
 {
   fun void Start()
   {

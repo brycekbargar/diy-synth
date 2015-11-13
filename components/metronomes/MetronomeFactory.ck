@@ -12,9 +12,9 @@ public class MetronomeFactory
   }
   fun static MetronomeBase GetMetronome(int metronomeType)
   {
-    if(metronomeType == MetronomeType.Fixed)
+    if(metronomeType == MetronomeType.TunedPing)
     {
-      return new Fixed $ MetronomeBase;
+      return new TunedPing $ MetronomeBase;
     }
 
     return null;

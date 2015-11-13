@@ -42,9 +42,20 @@ for( int i; i < me.args() - 1; i++ )
   if((thisArg == "metronome" || thisArg == "m"))
   {
     i++;
+    if(nextArg == "TunedPing")
+    {
+      MetronomeFactory.Configure(MetronomeType.TunedPing);
+      continue;
+    }
+    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
+  }
+
+  if((thisArg == "clock-generator" || thisArg == "c"))
+  {
+    i++;
     if(nextArg == "Fixed")
     {
-      MetronomeFactory.Configure(MetronomeType.Fixed);
+      MetronomeFactory.Configure(ClockGeneratorType.Fixed);
       continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
