@@ -16,6 +16,10 @@ public class ClockGeneratorFactory
     {
       return new Fixed $ ClockGeneratorBase;
     }
+    if(clockGeneratorType == ClockGeneratorType.Controllable)
+    {
+      return new Controllable $ ClockGeneratorBase;
+    }
 
     return null;
   }

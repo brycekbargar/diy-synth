@@ -58,6 +58,11 @@ for( int i; i < me.args() - 1; i++ )
       ClockGeneratorFactory.Configure(ClockGeneratorType.Fixed);
       continue;
     }
+    if(nextArg == "Controllable")
+    {
+      ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
+      continue;
+    }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
   }
 }

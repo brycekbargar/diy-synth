@@ -26,7 +26,7 @@ Machine.add(me.dir()+"stores/MidiNoteStore.ck");
 Machine.add(me.dir()+"stores/MidiControlStore.ck");
 Machine.add(me.dir()+"stores/ClockStore.ck");
 
-// Component Pluming
+// Component Plumbing
 Machine.add(me.dir()+"components/inputs/InputBase.ck");
 Machine.add(me.dir()+"components/outputs/OutputBase.ck");
 Machine.add(me.dir()+"components/clock-generators/ClockGeneratorBase.ck");
@@ -42,6 +42,7 @@ Machine.add(me.dir()+"components/inputs/HIDKeyboard.ck");
 Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
 Machine.add(me.dir()+"components/outputs/SimpleStrings.ck");
 Machine.add(me.dir()+"components/clock-generators/Fixed.ck");
+Machine.add(me.dir()+"components/clock-generators/Controllable.ck");
 Machine.add(me.dir()+"components/metronomes/TunedPing.ck");
 
 // Factories
