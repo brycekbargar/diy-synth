@@ -1,6 +1,8 @@
 // Defaults
 InputFactory.Configure(InputType.AlesisQ25);
 OutputFactory.Configure(OutputType.SimpleTriangle);
+ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
+MetronomeFactory.Configure(MetronomeType.TunedPing);
 
 for( int i; i < me.args() - 1; i++ )
 {
