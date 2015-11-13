@@ -15,8 +15,10 @@ Machine.add(me.dir()+"dispatcher/AppDispatcher.ck");
 Machine.add(me.dir()+"constants/Constants.ck");
 Machine.add(me.dir()+"actions/payloads/MidiNotePayload.ck");
 Machine.add(me.dir()+"actions/payloads/MidiControlPayload.ck");
+Machine.add(me.dir()+"actions/payloads/ClockPayload.ck");
 Machine.add(me.dir()+"actions/MidiNoteActions.ck");
 Machine.add(me.dir()+"actions/MidiControlActions.ck");
+Machine.add(me.dir()+"actions/ClockActions.ck");
 
 // State
 Machine.add(me.dir()+"stores/MidiNoteStore.ck");

@@ -7,9 +7,10 @@ public class Fixed extends ClockGeneratorBase
     while(true)
     {
       timing => now;
-      // Up
+      ClockActions.Downbeat();
+
       timing => now;
-      // Down
+      ClockActions.Upbeat(2);
     }
   }
 }
