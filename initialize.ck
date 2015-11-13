@@ -8,6 +8,7 @@ Machine.add(me.dir()+"framework/Dispatcher.ck");
 Machine.add(me.dir()+"models/MidiNote.ck");
 Machine.add(me.dir()+"models/MidiControlType.ck");
 Machine.add(me.dir()+"models/MidiControl.ck");
+Machine.add(me.dir()+"models/Clock.ck");
 
 
 // Plumbing
@@ -23,6 +24,7 @@ Machine.add(me.dir()+"actions/ClockActions.ck");
 // State
 Machine.add(me.dir()+"stores/MidiNoteStore.ck");
 Machine.add(me.dir()+"stores/MidiControlStore.ck");
+Machine.add(me.dir()+"stores/ClockStore.ck");
 
 // Component Pluming
 Machine.add(me.dir()+"components/inputs/InputBase.ck");
