@@ -22,7 +22,7 @@ public class SimpleTriangle extends OutputBase
           => safety;
         _ugens << newUgen;
       }
-      
+
       while(onNoteCount < _ugens.size())
       {
         _ugens[_ugens.size() - 1] =< safety;
