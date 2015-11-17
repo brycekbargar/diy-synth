@@ -14,10 +14,6 @@ public class MidiNoteStore
   fun MidiNote LastOff() { return _lastOff; }
 
   MidiNote _notes[0];
-  fun MidiNote[] AllNotes()
-  {
-    return _notes;
-  }
   fun MidiNote[] OnNotes()
   {
     MidiNote onNotes[0];
