@@ -3,11 +3,16 @@ public class SimpleStrings extends OutputBase
   MidiNoteStore.Instance() @=> MidiNoteStore _store;
   second / samp => static float _sampleRate;
 
-
   fun void Start()
   {
-    Noise noise => ADSR adsr => DelayA delay => Dyno safety => dac;
-    delay => OneZero lowPass => delay;
+    Noise noise
+      => ADSR adsr
+      => DelayA delay
+      => Dyno safety
+      => dac;
+    delay
+      => OneZero lowPass
+      => delay;
     adsr.set(.002 ::second, .002 ::second, 0, .1 ::second);
 
     MidiNote knownOnNotes[0];

@@ -6,7 +6,8 @@ public class SimpleTriangle extends OutputBase
 
   fun void Start()
   {
-    Dyno safety => dac;
+    Dyno safety
+      => dac;
 
     while(true)
     {
@@ -35,7 +36,8 @@ public class SimpleTriangle extends OutputBase
         else if(notes.size() > i && notes[i] != null && thisUgen == null)
         {
           // Create it!
-          TriOsc newUgen => safety;
+          TriOsc newUgen
+            => safety;
           0 => newUgen.gain;
           Std.mtof(notes[i].Number()) => newUgen.freq;
           newUgen @=> _ugens[i];

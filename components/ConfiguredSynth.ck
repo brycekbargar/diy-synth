@@ -1,5 +1,7 @@
-public class Synth
+public class ConfiguredSynth
 {
+  Event Done;
+
   fun void MakesNoise()
   {
     OutputFactory.GetConfigured() @=> OutputBase output;
@@ -9,5 +11,6 @@ public class Synth
     spork ~ input.Start();
 
     InputBase.Closed => now;
+    Done.broadcast();
   }
 }

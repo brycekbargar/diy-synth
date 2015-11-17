@@ -1,6 +1,8 @@
 // Defaults
 InputFactory.Configure(InputType.AlesisQ25);
 OutputFactory.Configure(OutputType.SimpleTriangle);
+ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
+MetronomeFactory.Configure(MetronomeType.TunedPing);
 
 for( int i; i < me.args() - 1; i++ )
 {
@@ -34,6 +36,33 @@ for( int i; i < me.args() - 1; i++ )
     if(nextArg == "SimpleStrings")
     {
       OutputFactory.Configure(OutputType.SimpleStrings);
+      continue;
+    }
+    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
+  }
+
+  if((thisArg == "metronome" || thisArg == "m"))
+  {
+    i++;
+    if(nextArg == "TunedPing")
+    {
+      MetronomeFactory.Configure(MetronomeType.TunedPing);
+      continue;
+    }
+    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
+  }
+
+  if((thisArg == "clock-generator" || thisArg == "c"))
+  {
+    i++;
+    if(nextArg == "Fixed")
+    {
+      ClockGeneratorFactory.Configure(ClockGeneratorType.Fixed);
+      continue;
+    }
+    if(nextArg == "Controllable")
+    {
+      ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
       continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
