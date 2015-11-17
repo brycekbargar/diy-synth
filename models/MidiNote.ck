@@ -13,23 +13,24 @@ public class MidiNote
   0 => int _isOn;
   fun int IsOn() { return _isOn; }
   fun int IsOff() { return IsOn() == 0; }
+
   fun void TurnOn()
   {
     TurnOn(127);
   }
   fun void TurnOn(int velocity)
   {
-    SetVelocity(velocity);
+    Velocity(velocity);
     1 => _isOn;
   }
+  
   fun void TurnOff()
   {
-    SetVelocity(0);
+    Velocity(0);
     0 => _isOn;
   }
 
-
   0 => int _velocity;
   fun int Velocity() { return _velocity; }
-  fun void SetVelocity(int velocity) { velocity => _velocity; }
+  fun int Velocity(int velocity) { velocity => _velocity; }
 }

@@ -2,11 +2,6 @@ public class HIDKeyboard extends InputBase
 {
   fun void Start()
   {
-    for(180 => int midiNote; midiNote > 0; midiNote--)
-    {
-      MidiNoteActions.Create(midiNote);
-    }
-
     Hid hi;
     if (!hi.openKeyboard(0))
     {

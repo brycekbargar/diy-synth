@@ -2,11 +2,6 @@ public class AlesisQ25 extends InputBase
 {
   fun void Start()
   {
-    for(124 => int midiNote; midiNote > 0; midiNote--)
-    {
-      MidiNoteActions.Create(midiNote);
-    }
-
     MidiIn min;
     if (!min.open(0))
     {

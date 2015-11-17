@@ -2,6 +2,16 @@ public class MidiNoteStore
 {
   static Event @ OnChange;
   new Event @=> OnChange;
+  fun void EmitChange()
+  {
+    OnChange.broadcast();
+  }
+
+  MidiNote @ _lastOn;
+  fun MidiNote LastOn() { return _lastOn; }
+
+  MidiNote @ _lastOff;
+  fun MidiNote LastOff() { return _lastOff; }
 
   MidiNote _notes[0];
   fun MidiNote[] AllNotes()
@@ -22,12 +32,7 @@ public class MidiNoteStore
     return onNotes;
   }
 
-  fun void EmitChange()
-  {
-    OnChange.broadcast();
-  }
-
-  fun void New(int number)
+  fun void EnsureExists(int number)
   {
     if(_notes.size() <= number)
     {
@@ -39,13 +44,19 @@ public class MidiNoteStore
       MidiNote.Create(number) @=> _notes[number];
     }
   }
+
   fun void TurnOn(int number)
   {
-    _notes[number].TurnOn();
+    _notes[number] @=> _lastOn;
+    _lastOn.TurnOn();
+    null @=> _lastOff;
   }
+
   fun void TurnOff(int number)
   {
-    _notes[number].TurnOff();
+    _notes[number] @=> _lastOff;
+    _lastOff.TurnOff();
+    null @=> _lastOn;
   }
 
   static MidiNoteStore @ _store;
@@ -79,16 +90,12 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
   {
     message.ActionType() => int actionType;
 
-    if(actionType == Constants.MIDI_NOTE_CREATE ||
-      actionType == Constants.MIDI_NOTE_ON ||
+    if(actionType == Constants.MIDI_NOTE_ON ||
       actionType == Constants.MIDI_NOTE_OFF)
     {
       (message.Payload() $ MidiNotePayload).Number() => int number;
+      _store.EnsureExists(number);
 
-      if(actionType == Constants.MIDI_NOTE_CREATE)
-      {
-        _store.New(number);
-      }
       if(actionType == Constants.MIDI_NOTE_ON)
       {
         _store.TurnOn(number);

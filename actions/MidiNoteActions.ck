@@ -1,10 +1,5 @@
 public class MidiNoteActions
 {
-  fun static void Create(int number)
-  {
-    Dispatch(Constants.MIDI_NOTE_CREATE, number);
-  }
-
   fun static void NoteOn(int number)
   {
     Dispatch(Constants.MIDI_NOTE_ON, number);
