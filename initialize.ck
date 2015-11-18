@@ -2,6 +2,7 @@
 Machine.add(me.dir()+"framework/PayloadBase.ck");
 Machine.add(me.dir()+"framework/DispatchMessage.ck");
 Machine.add(me.dir()+"framework/DispatchableBase.ck");
+Machine.add(me.dir()+"framework/DispatchToken.ck");
 Machine.add(me.dir()+"framework/Dispatcher.ck");
 
 // Domain

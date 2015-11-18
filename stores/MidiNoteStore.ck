@@ -7,6 +7,16 @@ public class MidiNoteStore
     OnChange.broadcast();
   }
 
+  static DispatchToken @ _token;
+  fun static string Token()
+  {
+    if(_token == null)
+    {
+      return "";
+    }
+    return _token.Value();
+  }
+
   MidiNote @ _lastOn;
   fun MidiNote LastOn() { return _lastOn; }
 
@@ -62,7 +72,8 @@ public class MidiNoteStore
     {
       new MidiNoteStore @=> _store;
       AppDispatcher.Instance()
-        .Register(MidiNoteStoreDispatchable.Create(_store));
+        .Register(MidiNoteStoreDispatchable.Create(_store))
+        @=> _token;
     }
 
     return _store;

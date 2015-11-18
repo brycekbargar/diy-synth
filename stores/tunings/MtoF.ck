@@ -60,6 +60,7 @@ private class MtoFDispatchable extends DispatchableBase
     if(actionType == Constants.MIDI_NOTE_ON ||
       actionType == Constants.MIDI_NOTE_OFF)
     {
+      AppDispatcher.Instance().WaitFor(MidiNoteStore.Token());
       _store.EmitChange();
     }
   }

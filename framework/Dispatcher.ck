@@ -10,7 +10,7 @@ public class Dispatcher
   0 => int _isDispatching;
   DispatchMessage @ _pendingMessage;
 
-  fun string Register(DispatchableBase dispatchable)
+  fun DispatchToken Register(DispatchableBase dispatchable)
   {
     1 +=> _lastId;
     (_prefix + _lastId) => string id;
@@ -18,7 +18,7 @@ public class Dispatcher
 
     dispatchable @=> _dispatchables[id];
 
-    return id;
+    return DispatchToken.Create(id);
   }
 
   fun void Unregister(string id)
