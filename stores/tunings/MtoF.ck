@@ -17,7 +17,7 @@ public class MtoF extends FrequencyStoreBase
   {
     _noteStore.OnNotes() @=> MidiNote onNotes[];
 
-    Frequency onFrequencies[];
+    Frequency onFrequencies[0];
     for(0 => int i; i < onNotes.size(); i++)
     {
       onNotes[i] @=> MidiNote note;

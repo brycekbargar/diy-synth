@@ -1,6 +1,6 @@
 public class SimpleTriangle extends OutputBase
 {
-  MidiNoteStore.Instance() @=> MidiNoteStore _store;
+  FrequencyStoreBase.Instance() @=> FrequencyStoreBase _store;
 
   TriOsc _ugens[0];
 
@@ -13,28 +13,28 @@ public class SimpleTriangle extends OutputBase
     {
       _store.OnChange => now;
 
-      _store.OnNotes() @=> MidiNote onNotes[];
-      onNotes.size() => int onNoteCount;
+      _store.OnFrequencies() @=> Frequency onFrequencies[];
+      onFrequencies.size() => int onFrequencyCount;
 
-      while(onNoteCount > _ugens.size())
+      while(onFrequencyCount > _ugens.size())
       {
         TriOsc newUgen
           => safety;
         _ugens << newUgen;
       }
 
-      while(onNoteCount < _ugens.size())
+      while(onFrequencyCount < _ugens.size())
       {
         _ugens[_ugens.size() - 1] =< safety;
         _ugens.popBack();
       }
 
-      for(0 => int i; i < onNoteCount; i++)
+      for(0 => int i; i < onFrequencyCount; i++)
       {
         _ugens[i] @=> TriOsc thisUgen;
 
-        (1.0 / onNoteCount) => thisUgen.gain;
-        Std.mtof(onNotes[i].Number()) => thisUgen.freq;
+        (1.0 / onFrequencyCount) => thisUgen.gain;
+        onFrequencies[i].Value() => thisUgen.freq;
       }
     }
   }
