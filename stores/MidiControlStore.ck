@@ -7,10 +7,26 @@ public class MidiControlStore
     OnChange.broadcast();
   }
 
+  static DispatchToken @ _token;
+  fun static string Token()
+  {
+    if(_token == null)
+    {
+      return "";
+    }
+    return _token.Value();
+  }
+
   0 => int _modWheel;
   fun int ModWheel()
   {
     return _modWheel;
+  }
+
+  0 => int _pitchBend;
+  fun int PitchBend()
+  {
+    return _pitchBend;
   }
 
   fun void Set(int type, int value)
@@ -18,6 +34,10 @@ public class MidiControlStore
     if(type == MidiControlType.ModWheel)
     {
       value => _modWheel;
+    }
+    if(type == MidiControlType.PitchBend)
+    {
+      value => _pitchBend;
     }
   }
 
@@ -28,7 +48,8 @@ public class MidiControlStore
     {
       new MidiControlStore @=> _store;
       AppDispatcher.Instance()
-        .Register(MidiControlStoreDispatchable.Create(_store));
+        .Register(MidiControlStoreDispatchable.Create(_store))
+        @=> _token;
     }
 
     return _store;

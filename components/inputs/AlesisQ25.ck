@@ -30,10 +30,9 @@ public class AlesisQ25 extends InputBase
             MidiControlActions.ModWheelSetTo(msg.data3);
           }
         }
-
         if(msg.data1 == 224)
         {
-          InputBase.Closed.broadcast();
+          MidiControlActions.PitchBendSetTo(msg.data3);
         }
       }
     }
