@@ -8,6 +8,8 @@ public class AlesisQ25 extends InputBase
       me.exit();
     }
 
+    MidiControlActions.PitchBendSetTo(64);
+
     MidiMsg msg;
     while(true)
     {
