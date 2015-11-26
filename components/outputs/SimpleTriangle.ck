@@ -1,6 +1,6 @@
 public class SimpleTriangle extends OutputBase
 {
-  FrequencyStoreBase.Instance() @=> FrequencyStoreBase _store;
+  FrequencyStore.Instance() @=> FrequencyStore _store;
 
   TriOsc _ugens[0];
 

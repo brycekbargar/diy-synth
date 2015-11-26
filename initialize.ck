@@ -37,11 +37,7 @@ Machine.add(me.dir()+"components/metronomes/MetronomeTypes.ck");
 Machine.add(me.dir()+"stores/MidiNoteStore.ck");
 Machine.add(me.dir()+"stores/MidiControlStore.ck");
 Machine.add(me.dir()+"stores/ClockStore.ck");
-Machine.add(me.dir()+"stores/FrequencyStoreBase.ck");
-
-// Tunings
-Machine.add(me.dir()+"stores/tunings/MtoF.ck");
-Machine.add(me.dir()+"stores/tunings/KimbergerII.ck");
+Machine.add(me.dir()+"stores/FrequencyStore.ck");
 
 // Components
 Machine.add(me.dir()+"components/inputs/AlesisQ25.ck");

@@ -3,7 +3,6 @@ InputFactory.Configure(InputType.AlesisQ25);
 OutputFactory.Configure(OutputType.SimpleTriangle);
 ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
 MetronomeFactory.Configure(MetronomeType.TunedPing);
-KimbergerII.Configure();
 
 for( int i; i < me.args() - 1; i++ )
 {
@@ -64,22 +63,6 @@ for( int i; i < me.args() - 1; i++ )
     if(nextArg == "Controllable")
     {
       ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
-      continue;
-    }
-    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
-  }
-
-  if((thisArg == "tuning" || thisArg == "t"))
-  {
-    i++;
-    if(nextArg == "MtoF")
-    {
-      MtoF.Configure();
-      continue;
-    }
-    if(nextArg == "KimbergerII")
-    {
-      KimbergerII.Configure();
       continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;

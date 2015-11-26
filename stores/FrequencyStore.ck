@@ -1,46 +1,31 @@
-public class KimbergerII extends FrequencyStoreBase
+public class FrequencyStore
 {
+  static Event @ OnChange;
+  new Event @=> OnChange;
+  fun void EmitChange()
+  {
+    OnChange.broadcast();
+  }
+
   3 => float _pitchBendStepMax;
 
   MidiNoteStore.Instance() @=> MidiNoteStore _noteStore;
   MidiControlStore.Instance() @=> MidiControlStore _controlStore;
 
-  // Reference A * Ratio to Middle C
-  (440.0 * (.5963)) => float _middleC;
-
-  [1.0, // C
-  (256.0/243), // C#
-  (9.0/8), // D
-  (32.0/27), // D#
-  (5.0/4), // E
-  (4.0/3), // F
-  (45.0/32), // F#
-  (3.0/2), // G
-  (128.0/81), // G#
-  1.677, // A
-  (16.0/9), // A#
-  (15.0/8)] // B
-    @=> float _ratiosFromC[];
-
+  // fn = f0 * (a)^n
+  Math.pow(2, 1.0/12) => float _a;
   fun Frequency _FrequencyFrom(MidiNote note)
   {
-    note.Number() % 12 => int stepFromC;
-    note.Number() / 12 => int octave;
+    Std.mtof(note.Number()) => float f0;
 
-    _middleC => float baseFrequency;
-    if(octave < 5)
-    {
-      ((5 - octave) * 2) /=> baseFrequency;
-    }
-    if(octave > 5)
-    {
-      ((octave - 5) * 2) *=> baseFrequency;
-    }
+    (_controlStore.PitchBend() - 64)
+    / (64.0 / _pitchBendStepMax)
+      => float n;
 
-    _ratiosFromC[stepFromC] * baseFrequency => float frequency;
+    f0 * Math.pow(_a, n) => float fn;
 
     return Frequency.Create(
-      frequency,
+      fn,
       note.Velocity());
   }
 
@@ -67,24 +52,27 @@ public class KimbergerII extends FrequencyStoreBase
     return onFrequencies;
   }
 
-  fun static void Configure()
+  static FrequencyStore @ _store;
+  fun static FrequencyStore Instance()
   {
     if(_store == null)
     {
-      KimbergerII store @=> _store;
+      FrequencyStore store @=> _store;
       AppDispatcher.Instance()
-        .Register(KimbergerIIDispatchable.Create(store));
+        .Register(FrequencyStoreDispatchable.Create(store));
     }
+    return _store;
   }
 }
+FrequencyStore.Instance();
 
-private class KimbergerIIDispatchable extends DispatchableBase
+private class FrequencyStoreDispatchable extends DispatchableBase
 {
-  KimbergerII @ _store;
+  FrequencyStore @ _store;
 
-  fun static DispatchableBase Create(KimbergerII store)
+  fun static DispatchableBase Create(FrequencyStore store)
   {
-    KimbergerIIDispatchable newDispatchable;
+    FrequencyStoreDispatchable newDispatchable;
     store @=> newDispatchable._store;
 
     return newDispatchable;
@@ -98,6 +86,12 @@ private class KimbergerIIDispatchable extends DispatchableBase
       actionType == Constants.MIDI_NOTE_OFF)
     {
       AppDispatcher.Instance().WaitFor(MidiNoteStore.Token());
+      _store.EmitChange();
+    }
+
+    if(actionType == Constants.MIDI_CONTROL)
+    {
+      AppDispatcher.Instance().WaitFor(MidiControlStore.Token());
       _store.EmitChange();
     }
   }
