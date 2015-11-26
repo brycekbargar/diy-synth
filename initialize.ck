@@ -5,6 +5,16 @@ Machine.add(me.dir()+"framework/DispatchableBase.ck");
 Machine.add(me.dir()+"framework/DispatchToken.ck");
 Machine.add(me.dir()+"framework/Dispatcher.ck");
 
+// Configuration
+// (...why is this language such shit?)
+"" => string args;
+for( int i; i < me.args(); i++ )
+{
+  (":" + me.arg(i)) +=> args;
+}
+Machine.add(me.dir()+"configuration/FactoryBase.ck");
+Machine.add(me.dir()+"configuration/Configurator.ck" + args);
+
 // Domain
 Machine.add(me.dir()+"models/MidiNote.ck");
 Machine.add(me.dir()+"models/MidiControlType.ck");
@@ -59,11 +69,5 @@ Machine.add(me.dir()+"components/ConfiguredMetronome.ck");
 Machine.add(me.dir()+"components/ConfiguredSynth.ck");
 
 // Go!
-// (...why is this language such shit?)
-me.dir()+"configurator.ck" => string configurator;
-for( int i; i < me.args(); i++ )
-{
-  (configurator + ":" + me.arg(i)) => configurator;
-}
-Machine.add(configurator);
+Machine.add(me.dir()+"configurator.ck" + args);
 Machine.add(me.dir()+"index.ck");
