@@ -1,27 +1,38 @@
-public class InputFactory
+public class InputFactory extends FactoryBase
 {
-  0 => static int _configuredInputType;
-  fun static void Configure(int inputType)
+  "AlesisQ25" => string _defaultValue;
+
+  static InputBase _possibleInputs[];
+  new InputBase[0] @=> _possibleInputs;
+  fun static void Register(string key, InputBase output)
   {
-    inputType => _configuredInputType;
+    output @=> _possibleInputs[key];
   }
 
-  fun static InputBase GetConfigured()
+  fun InputBase GetConfigured()
   {
-    return GetInput(_configuredInputType);
+    if(_configuredValue == "")
+    {
+      return GetInput(_defaultValue);
+    }
+    return GetInput(_configuredValue);
   }
-  fun static InputBase GetInput(int inputType)
-  {
-    if(inputType == InputType.AlesisQ25)
-    {
-      return new AlesisQ25 $ InputBase;
-    }
-    if(inputType == InputType.HIDKeyboard)
-    {
-      return new HIDKeyboard $ InputBase;
-    }
 
-    return null;
+  fun InputBase GetInput(string value)
+  {
+    return _possibleInputs[value];
+  }
+
+  static InputFactory @ _factory;
+  fun static InputFactory Instance()
+  {
+    if(_factory == null)
+    {
+      new InputFactory @=> _factory;
+    }
+    return _factory;
   }
 }
-InputFactory inputFactory;
+InputFactory.Instance() @=> InputFactory factory;
+Configurator.Instance().Configure("i", factory);
+Configurator.Instance().Configure("input", factory);

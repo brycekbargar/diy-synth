@@ -1,5 +1,4 @@
 // Defaults
-InputFactory.Configure(InputType.AlesisQ25);
 ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
 MetronomeFactory.Configure(MetronomeType.TunedPing);
 
@@ -7,22 +6,6 @@ for( int i; i < me.args() - 1; i++ )
 {
   me.arg(i) => string thisArg;
   me.arg(i + 1) => string nextArg;
-
-  if((thisArg == "input" || thisArg == "i"))
-  {
-    i++;
-    if(nextArg == "AlesisQ25")
-    {
-      InputFactory.Configure(InputType.AlesisQ25);
-      continue;
-    }
-    if(nextArg == "HIDKeyboard")
-    {
-      InputFactory.Configure(InputType.HIDKeyboard);
-      continue;
-    }
-    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
-  }
 
   if((thisArg == "metronome" || thisArg == "m"))
   {
