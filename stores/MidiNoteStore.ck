@@ -2,12 +2,28 @@ public class MidiNoteStore
 {
   static Event @ OnChange;
   new Event @=> OnChange;
+  fun void EmitChange()
+  {
+    OnChange.broadcast();
+  }
+
+  static DispatchToken @ _token;
+  fun static string Token()
+  {
+    if(_token == null)
+    {
+      return "";
+    }
+    return _token.Value();
+  }
+
+  MidiNote @ _lastOn;
+  fun MidiNote LastOn() { return _lastOn; }
+
+  MidiNote @ _lastOff;
+  fun MidiNote LastOff() { return _lastOff; }
 
   MidiNote _notes[0];
-  fun MidiNote[] AllNotes()
-  {
-    return _notes;
-  }
   fun MidiNote[] OnNotes()
   {
     MidiNote onNotes[0];
@@ -22,12 +38,7 @@ public class MidiNoteStore
     return onNotes;
   }
 
-  fun void EmitChange()
-  {
-    OnChange.broadcast();
-  }
-
-  fun void New(int number)
+  fun void EnsureExists(int number)
   {
     if(_notes.size() <= number)
     {
@@ -39,13 +50,19 @@ public class MidiNoteStore
       MidiNote.Create(number) @=> _notes[number];
     }
   }
+
   fun void TurnOn(int number)
   {
-    _notes[number].TurnOn();
+    _notes[number] @=> _lastOn;
+    _lastOn.TurnOn();
+    null @=> _lastOff;
   }
+
   fun void TurnOff(int number)
   {
-    _notes[number].TurnOff();
+    _notes[number] @=> _lastOff;
+    _lastOff.TurnOff();
+    null @=> _lastOn;
   }
 
   static MidiNoteStore @ _store;
@@ -55,7 +72,8 @@ public class MidiNoteStore
     {
       new MidiNoteStore @=> _store;
       AppDispatcher.Instance()
-        .Register(MidiNoteStoreDispatchable.Create(_store));
+        .Register(MidiNoteStoreDispatchable.Create(_store))
+        @=> _token;
     }
 
     return _store;
@@ -79,16 +97,12 @@ private class MidiNoteStoreDispatchable extends DispatchableBase
   {
     message.ActionType() => int actionType;
 
-    if(actionType == Constants.MIDI_NOTE_CREATE ||
-      actionType == Constants.MIDI_NOTE_ON ||
+    if(actionType == Constants.MIDI_NOTE_ON ||
       actionType == Constants.MIDI_NOTE_OFF)
     {
       (message.Payload() $ MidiNotePayload).Number() => int number;
+      _store.EnsureExists(number);
 
-      if(actionType == Constants.MIDI_NOTE_CREATE)
-      {
-        _store.New(number);
-      }
       if(actionType == Constants.MIDI_NOTE_ON)
       {
         _store.TurnOn(number);

@@ -2,16 +2,13 @@ public class AlesisQ25 extends InputBase
 {
   fun void Start()
   {
-    for(124 => int midiNote; midiNote > 0; midiNote--)
-    {
-      MidiNoteActions.Create(midiNote);
-    }
-
     MidiIn min;
     if (!min.open(0))
     {
       me.exit();
     }
+
+    MidiControlActions.PitchBendSetTo(64);
 
     MidiMsg msg;
     while(true)
@@ -35,10 +32,9 @@ public class AlesisQ25 extends InputBase
             MidiControlActions.ModWheelSetTo(msg.data3);
           }
         }
-
         if(msg.data1 == 224)
         {
-          InputBase.Closed.broadcast();
+          MidiControlActions.PitchBendSetTo(msg.data3);
         }
       }
     }
