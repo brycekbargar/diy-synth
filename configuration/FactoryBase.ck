@@ -1,6 +1,6 @@
 public class FactoryBase
 {
-  null => string _configuredValue;
+  "" => string _configuredValue;
   fun void Use(string configuredValue)
   {
     configuredValue => _configuredValue;

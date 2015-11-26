@@ -15,6 +15,7 @@ for( int i; i < me.args(); i++ )
 Machine.add(me.dir()+"configuration/FactoryBase.ck");
 Machine.add(me.dir()+"configuration/Configurator.ck" + args);
 
+0 :: second => now;
 // Domain
 Machine.add(me.dir()+"models/MidiNote.ck");
 Machine.add(me.dir()+"models/MidiControlType.ck");
@@ -39,7 +40,6 @@ Machine.add(me.dir()+"components/outputs/OutputBase.ck");
 Machine.add(me.dir()+"components/clock-generators/ClockGeneratorBase.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeBase.ck");
 Machine.add(me.dir()+"components/inputs/InputTypes.ck");
-Machine.add(me.dir()+"components/outputs/OutputTypes.ck");
 Machine.add(me.dir()+"components/clock-generators/ClockGeneratorTypes.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeTypes.ck");
 
@@ -48,6 +48,8 @@ Machine.add(me.dir()+"stores/MidiNoteStore.ck");
 Machine.add(me.dir()+"stores/MidiControlStore.ck");
 Machine.add(me.dir()+"stores/ClockStore.ck");
 Machine.add(me.dir()+"stores/FrequencyStore.ck");
+
+Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
 
 // Components
 Machine.add(me.dir()+"components/inputs/AlesisQ25.ck");
@@ -60,7 +62,6 @@ Machine.add(me.dir()+"components/metronomes/TunedPing.ck");
 
 // Factories
 Machine.add(me.dir()+"components/inputs/InputFactory.ck");
-Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
 Machine.add(me.dir()+"components/clock-generators/ClockGeneratorFactory.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeFactory.ck");
 

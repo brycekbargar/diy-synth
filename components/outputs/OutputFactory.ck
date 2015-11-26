@@ -1,27 +1,38 @@
-public class OutputFactory
+public class OutputFactory extends FactoryBase
 {
-  0 => static int _configuredOutputType;
-  fun static void Configure(int outputType)
+  "SimpleTriangle" => string _defaultValue;
+
+  static OutputBase _possibleOutputs[];
+  new OutputBase[0] @=> _possibleOutputs;
+  fun static void Register(string key, OutputBase output)
   {
-    outputType => _configuredOutputType;
+    output @=> _possibleOutputs[key];
   }
 
-  fun static OutputBase GetConfigured()
+  fun OutputBase GetConfigured()
   {
-    return GetOutput(_configuredOutputType);
+    if(_configuredValue == "")
+    {
+      return GetOutput(_defaultValue);
+    }
+    return GetOutput(_configuredValue);
   }
-  fun static OutputBase GetOutput(int outputType)
-  {
-    if(outputType == OutputType.SimpleTriangle)
-    {
-      return new SimpleTriangle $ OutputBase;
-    }
-    if(outputType == OutputType.SimpleStrings)
-    {
-      return new SimpleStrings $ OutputBase;
-    }
 
-    return null;
+  fun OutputBase GetOutput(string value)
+  {
+    return _possibleOutputs[value];
+  }
+
+  static OutputFactory @ _factory;
+  fun static OutputFactory Instance()
+  {
+    if(_factory == null)
+    {
+      new OutputFactory @=> _factory;
+    }
+    return _factory;
   }
 }
-OutputFactory outputFactory;
+OutputFactory.Instance() @=> OutputFactory factory;
+Configurator.Instance().Configure("o", factory);
+Configurator.Instance().Configure("output", factory);

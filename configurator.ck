@@ -1,6 +1,5 @@
 // Defaults
 InputFactory.Configure(InputType.AlesisQ25);
-OutputFactory.Configure(OutputType.SimpleTriangle);
 ClockGeneratorFactory.Configure(ClockGeneratorType.Controllable);
 MetronomeFactory.Configure(MetronomeType.TunedPing);
 
@@ -20,22 +19,6 @@ for( int i; i < me.args() - 1; i++ )
     if(nextArg == "HIDKeyboard")
     {
       InputFactory.Configure(InputType.HIDKeyboard);
-      continue;
-    }
-    <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
-  }
-
-  if((thisArg == "output" || thisArg == "o"))
-  {
-    i++;
-    if(nextArg == "SimpleTriangle")
-    {
-      OutputFactory.Configure(OutputType.SimpleTriangle);
-      continue;
-    }
-    if(nextArg == "SimpleStrings")
-    {
-      OutputFactory.Configure(OutputType.SimpleStrings);
       continue;
     }
     <<< "Couldn't find " + nextArg + ". We're using the default" >>>;
