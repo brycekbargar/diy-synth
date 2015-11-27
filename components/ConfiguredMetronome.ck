@@ -8,7 +8,7 @@ public class ConfiguredMetronome
       spork ~ clockGenerator.Start();
     }
 
-    MetronomeFactory.GetConfigured() @=> MetronomeBase metronome;
+    MetronomeFactory.Instance().GetConfigured() @=> MetronomeBase metronome;
     if(metronome != null)
     {
       spork ~ metronome.Start();

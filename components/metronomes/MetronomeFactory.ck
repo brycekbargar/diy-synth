@@ -1,23 +1,38 @@
-public class MetronomeFactory
+public class MetronomeFactory extends FactoryBase
 {
-  0 => static int _configuredMetronomeType;
-  fun static void Configure(int metronomeType)
+  "TunedPing" => string _defaultValue;
+
+  static MetronomeBase _possibleMetronomes[];
+  new MetronomeBase[0] @=> _possibleMetronomes;
+  fun static void Register(string key, MetronomeBase output)
   {
-    metronomeType => _configuredMetronomeType;
+    output @=> _possibleMetronomes[key];
   }
 
-  fun static MetronomeBase GetConfigured()
+  fun MetronomeBase GetConfigured()
   {
-    return GetMetronome(_configuredMetronomeType);
-  }
-  fun static MetronomeBase GetMetronome(int metronomeType)
-  {
-    if(metronomeType == MetronomeType.TunedPing)
+    if(_configuredValue == "")
     {
-      return new TunedPing $ MetronomeBase;
+      return GetMetronome(_defaultValue);
     }
+    return GetMetronome(_configuredValue);
+  }
 
-    return null;
+  fun MetronomeBase GetMetronome(string value)
+  {
+    return _possibleMetronomes[value];
+  }
+
+  static MetronomeFactory @ _factory;
+  fun static MetronomeFactory Instance()
+  {
+    if(_factory == null)
+    {
+      new MetronomeFactory @=> _factory;
+    }
+    return _factory;
   }
 }
-MetronomeFactory metronomeFactory;
+MetronomeFactory.Instance() @=> MetronomeFactory factory;
+Configurator.Instance().Configure("m", factory);
+Configurator.Instance().Configure("metronome", factory);

@@ -31,3 +31,4 @@ public class TunedPing extends MetronomeBase
     }
   }
 }
+MetronomeFactory.Register("TunedPing", new TunedPing);
