@@ -14,3 +14,4 @@ public class Fixed extends ClockGeneratorBase
     }
   }
 }
+ClockGeneratorFactory.Register("Fixed", new Fixed);

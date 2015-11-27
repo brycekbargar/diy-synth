@@ -1,27 +1,38 @@
-public class ClockGeneratorFactory
+public class ClockGeneratorFactory extends FactoryBase
 {
-  0 => static int _configuredClockGeneratorType;
-  fun static void Configure(int clockGeneratorType)
+  "Controllable" => string _defaultValue;
+
+  static ClockGeneratorBase _possibleClockGenerators[];
+  new ClockGeneratorBase[0] @=> _possibleClockGenerators;
+  fun static void Register(string key, ClockGeneratorBase output)
   {
-    clockGeneratorType => _configuredClockGeneratorType;
+    output @=> _possibleClockGenerators[key];
   }
 
-  fun static ClockGeneratorBase GetConfigured()
+  fun ClockGeneratorBase GetConfigured()
   {
-    return GetClockGenerator(_configuredClockGeneratorType);
+    if(_configuredValue == "")
+    {
+      return GetClockGenerator(_defaultValue);
+    }
+    return GetClockGenerator(_configuredValue);
   }
-  fun static ClockGeneratorBase GetClockGenerator(int clockGeneratorType)
-  {
-    if(clockGeneratorType == ClockGeneratorType.Fixed)
-    {
-      return new Fixed $ ClockGeneratorBase;
-    }
-    if(clockGeneratorType == ClockGeneratorType.Controllable)
-    {
-      return new Controllable $ ClockGeneratorBase;
-    }
 
-    return null;
+  fun ClockGeneratorBase GetClockGenerator(string value)
+  {
+    return _possibleClockGenerators[value];
+  }
+
+  static ClockGeneratorFactory @ _factory;
+  fun static ClockGeneratorFactory Instance()
+  {
+    if(_factory == null)
+    {
+      new ClockGeneratorFactory @=> _factory;
+    }
+    return _factory;
   }
 }
-ClockGeneratorFactory clockGeneratorFactory;
+ClockGeneratorFactory.Instance() @=> ClockGeneratorFactory factory;
+Configurator.Instance().Configure("c", factory);
+Configurator.Instance().Configure("clock", factory);

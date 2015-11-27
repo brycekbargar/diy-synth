@@ -35,14 +35,14 @@ Machine.add(me.dir()+"actions/MidiControlActions.ck");
 Machine.add(me.dir()+"actions/ClockActions.ck");
 
 // Component Plumbing
-Machine.add(me.dir()+"components/clock-generators/ClockGeneratorBase.ck");
-Machine.add(me.dir()+"components/clock-generators/ClockGeneratorTypes.ck");
 Machine.add(me.dir()+"components/inputs/InputBase.ck");
 Machine.add(me.dir()+"components/inputs/InputFactory.ck");
 Machine.add(me.dir()+"components/outputs/OutputBase.ck");
 Machine.add(me.dir()+"components/outputs/OutputFactory.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeBase.ck");
 Machine.add(me.dir()+"components/metronomes/MetronomeFactory.ck");
+Machine.add(me.dir()+"components/clock-generators/ClockGeneratorBase.ck");
+Machine.add(me.dir()+"components/clock-generators/ClockGeneratorFactory.ck");
 
 // State
 Machine.add(me.dir()+"stores/MidiNoteStore.ck");
@@ -59,13 +59,9 @@ Machine.add(me.dir()+"components/clock-generators/Fixed.ck");
 Machine.add(me.dir()+"components/clock-generators/Controllable.ck");
 Machine.add(me.dir()+"components/metronomes/TunedPing.ck");
 
-// Factories
-Machine.add(me.dir()+"components/clock-generators/ClockGeneratorFactory.ck");
-
 // Synths
 Machine.add(me.dir()+"components/ConfiguredMetronome.ck");
 Machine.add(me.dir()+"components/ConfiguredSynth.ck");
 
 // Go!
-Machine.add(me.dir()+"configurator.ck" + args);
 Machine.add(me.dir()+"index.ck");
