@@ -10,9 +10,9 @@ public class AppFactory extends ObjectFactory
     return _GetConfiguredInstance("o") $ OutputBase;
   }
 
-  fun ClockGeneratorBase GetConfiguredClockGenerator()
+  fun ClockBase GetConfiguredClock()
   {
-    return _GetConfiguredInstance("c") $ ClockGeneratorBase;
+    return _GetConfiguredInstance("c") $ ClockBase;
   }
 
   fun MetronomeBase GetConfiguredMetronome()

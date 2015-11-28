@@ -1,11 +1,11 @@
-public class Controllable extends ClockGeneratorBase
+public class Controllable extends ClockBase
 {
   MidiControlStore.Instance() @=> MidiControlStore _store;
 
   fun void Start()
   {
     0 => int tempo;
-    Shred @ clockGenerator;
+    Shred @ clock;
     while(true)
     {
       MidiControlStore.OnChange => now;
@@ -15,17 +15,17 @@ public class Controllable extends ClockGeneratorBase
         continue;
       }
 
-      if(clockGenerator != null)
+      if(clock != null)
       {
-        clockGenerator.exit();
+        clock.exit();
       }
 
       _store.ModWheel() => tempo;
-      spork ~ ClockGenerator(tempo + 40) @=> clockGenerator;
+      spork ~ Clock(tempo + 40) @=> clock;
     }
   }
 
-  fun static void ClockGenerator(int tempo)
+  fun static void Clock(int tempo)
   {
     (60.0 / tempo) ::second => dur clock;
     while(true)

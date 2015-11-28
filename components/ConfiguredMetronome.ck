@@ -2,10 +2,10 @@ public class ConfiguredMetronome
 {
   fun void MakesNoise()
   {
-    AppFactory.Instance().GetConfiguredClockGenerator() @=> ClockGeneratorBase clockGenerator;
-    if(clockGenerator != null)
+    AppFactory.Instance().GetConfiguredClock() @=> ClockBase clock;
+    if(clock != null)
     {
-      spork ~ clockGenerator.Start();
+      spork ~ clock.Start();
     }
 
     AppFactory.Instance().GetConfiguredMetronome() @=> MetronomeBase metronome;

@@ -47,7 +47,7 @@ Machine.add(me.dir()+"stores/FrequencyStore.ck");
 Machine.add(me.dir()+"components/plumbing/InputBase.ck");
 Machine.add(me.dir()+"components/plumbing/OutputBase.ck");
 Machine.add(me.dir()+"components/plumbing/MetronomeBase.ck");
-Machine.add(me.dir()+"components/plumbing/ClockGeneratorBase.ck");
+Machine.add(me.dir()+"components/plumbing/ClockBase.ck");
 Machine.add(me.dir()+"components/plumbing/AppFactory.ck");
 0 :: second => now;
 
@@ -56,8 +56,8 @@ Machine.add(me.dir()+"components/inputs/AlesisQ25.ck");
 Machine.add(me.dir()+"components/inputs/HIDKeyboard.ck");
 Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
 Machine.add(me.dir()+"components/outputs/SimpleStrings.ck");
-Machine.add(me.dir()+"components/clock-generators/Fixed.ck");
-Machine.add(me.dir()+"components/clock-generators/Controllable.ck");
+Machine.add(me.dir()+"components/clocks/Fixed.ck");
+Machine.add(me.dir()+"components/clocks/Controllable.ck");
 Machine.add(me.dir()+"components/metronomes/TunedPing.ck");
 0 :: second => now;
 
