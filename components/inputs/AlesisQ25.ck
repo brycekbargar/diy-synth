@@ -40,4 +40,4 @@ public class AlesisQ25 extends InputBase
     }
   }
 }
-InputFactory.Register("AlesisQ25", new AlesisQ25);
+ObjectFactory.Register("AlesisQ25", new AlesisQ25);

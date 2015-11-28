@@ -35,4 +35,4 @@ public class Controllable extends ClockGeneratorBase
     }
   }
 }
-ClockGeneratorFactory.Register("Controllable", new Controllable);
+ObjectFactory.Register("Controllable", new Controllable);

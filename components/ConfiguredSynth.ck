@@ -4,10 +4,10 @@ public class ConfiguredSynth
 
   fun void MakesNoise()
   {
-    OutputFactory.Instance().GetConfigured() @=> OutputBase output;
+    AppFactory.Instance().GetConfiguredOutput() @=> OutputBase output;
     spork ~ output.Start();
 
-    InputFactory.Instance().GetConfigured() @=> InputBase input;
+    AppFactory.Instance().GetConfiguredInput() @=> InputBase input;
     spork ~ input.Start();
 
     InputBase.Closed => now;

@@ -33,4 +33,4 @@ public class HIDKeyboard extends InputBase
     MidiNoteActions.NoteOff(number);
   }
 }
-InputFactory.Register("HIDKeyboard", new HIDKeyboard);
+ObjectFactory.Register("HIDKeyboard", new HIDKeyboard);
