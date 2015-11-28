@@ -39,3 +39,4 @@ public class SimpleTriangle extends OutputBase
     }
   }
 }
+ObjectFactory.Register("SimpleTriangle", new SimpleTriangle);

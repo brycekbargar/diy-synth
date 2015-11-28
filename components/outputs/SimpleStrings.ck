@@ -31,3 +31,4 @@ public class SimpleStrings extends OutputBase
     }
   }
 }
+ObjectFactory.Register("SimpleStrings", new SimpleStrings);

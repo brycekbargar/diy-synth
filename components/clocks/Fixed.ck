@@ -1,4 +1,4 @@
-public class Fixed extends ClockGeneratorBase
+public class Fixed extends ClockBase
 {
   fun void Start()
   {
@@ -14,3 +14,4 @@ public class Fixed extends ClockGeneratorBase
     }
   }
 }
+ObjectFactory.Register("Fixed", new Fixed);

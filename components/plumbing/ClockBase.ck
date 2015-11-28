@@ -1,4 +1,4 @@
-public class MetronomeBase
+public class ClockBase
 {
   fun void Start() { }
 }
