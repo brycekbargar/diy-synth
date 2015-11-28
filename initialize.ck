@@ -46,7 +46,7 @@ Machine.add(me.dir()+"stores/FrequencyStore.ck");
 // Component Plumbing
 Machine.add(me.dir()+"components/plumbing/InputBase.ck");
 Machine.add(me.dir()+"components/plumbing/OutputBase.ck");
-Machine.add(me.dir()+"components/plumbing/MetronomeBase.ck");
+Machine.add(me.dir()+"components/plumbing/MetronomeVoiceBase.ck");
 Machine.add(me.dir()+"components/plumbing/ClockBase.ck");
 Machine.add(me.dir()+"components/plumbing/AppFactory.ck");
 0 :: second => now;
@@ -58,7 +58,7 @@ Machine.add(me.dir()+"components/outputs/SimpleTriangle.ck");
 Machine.add(me.dir()+"components/outputs/SimpleStrings.ck");
 Machine.add(me.dir()+"components/clocks/Fixed.ck");
 Machine.add(me.dir()+"components/clocks/Controllable.ck");
-Machine.add(me.dir()+"components/metronomes/TunedPing.ck");
+Machine.add(me.dir()+"components/metronome-voices/TunedPing.ck");
 0 :: second => now;
 
 // Synths

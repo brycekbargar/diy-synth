@@ -15,9 +15,9 @@ public class AppFactory extends ObjectFactory
     return _GetConfiguredInstance("c") $ ClockBase;
   }
 
-  fun MetronomeBase GetConfiguredMetronome()
+  fun MetronomeVoiceBase GetConfiguredMetronomeVoice()
   {
-    return _GetConfiguredInstance("m") $ MetronomeBase;
+    return _GetConfiguredInstance("m") $ MetronomeVoiceBase;
   }
 
   static AppFactory @ _appFactory;

@@ -8,7 +8,7 @@ public class ConfiguredMetronome
       spork ~ clock.Start();
     }
 
-    AppFactory.Instance().GetConfiguredMetronome() @=> MetronomeBase metronome;
+    AppFactory.Instance().GetConfiguredMetronomeVoice() @=> MetronomeVoiceBase metronome;
     if(metronome != null)
     {
       spork ~ metronome.Start();

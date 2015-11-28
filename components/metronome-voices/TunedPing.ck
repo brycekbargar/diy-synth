@@ -1,4 +1,4 @@
-public class TunedPing extends MetronomeBase
+public class TunedPing extends MetronomeVoiceBase
 {
   ClockStore.Instance() @=> ClockStore _store;
 
